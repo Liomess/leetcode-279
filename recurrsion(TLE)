@@ -1,0 +1,23 @@
+class Solution:
+    def numSquares(self, n: int) -> int:
+        def f(self,n,i,l):
+            if i==0:
+                return n
+            if n<=0:
+                return 0
+            take=10**5
+            if l[i]<=n:
+                take=1+f(self,n-l[i],i,l)
+            not_take=f(self,n,i-1,l)
+            return min(take,not_take)
+
+
+        l=[]
+        for i in range(1,n+1):
+            val=i*i
+            if val<=n:
+                l.append(val)
+            else:
+                break
+        size=len(l)
+        return f(self,n,size-1,l)
