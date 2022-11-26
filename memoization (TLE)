@@ -1,0 +1,32 @@
+class Solution:
+    def numSquares(self, n: int) -> int:
+        def f(self,n,i,l,dp):
+            if i==0:
+                dp[n][i]=n
+                return dp[n][i]
+            if n<=0:
+                dp[n][i]=0
+                return dp[n][i]
+            if dp[n][i]!=-1:
+                return dp[n][i]
+            take=10**5
+            if l[i]<=n:
+                take=1+f(self,n-l[i],i,l,dp)
+            not_take=f(self,n,i-1,l,dp)
+            dp[n][i]=min(take,not_take)
+            return dp[n][i] 
+
+
+        l=[]
+        for i in range(1,n+1):
+            val=i*i
+            if val<=n:
+                l.append(val)
+            else:
+                break
+        size=len(l)
+        dp=[[-1 for i in range(size)] for i in range(n+1)]
+        return f(self,n,size-1,l,dp)
+
+        
+        
